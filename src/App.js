@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import ButtonAppBar from './ButtonAppBar';
+import FormController from './FormController';
+import EntryTitle from './EntryTitle';
+import EntriesContainer from './EntriesContainer';
+import { useState } from 'react';
 
 function App() {
+  const [hasBeenSubmitted, setHasBeenSubmitted] = useState(false);
+
+  function toggleSubmit() {
+    setHasBeenSubmitted(!hasBeenSubmitted);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ButtonAppBar />
+      <EntryTitle />
+      <FormController toggleSubmit={toggleSubmit} />
+      <EntriesContainer hasBeenSubmitted={hasBeenSubmitted} />
     </div>
   );
 }
